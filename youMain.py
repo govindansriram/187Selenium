@@ -24,8 +24,8 @@ def initialize():
     time.sleep(5)
     driver.implicitly_wait(10)
 
-#     email_element = driver.find_element(by=By.XPATH, value="//input[@class='class="sc-63e0c30e-0 ePhVwB sc-a4788ff0-0 crcyMV"']")
-#     email_element.send_keys(os.getenv("EMAIL"))
+    email_element = driver.find_element(by=By.XPATH, value="//a[@href='Log In']")
+    email_element.send_keys(os.getenv("EMAIL"))
 #     continue_button = driver.find_element(by=By.XPATH, value="//button[@class='c756c7a38 cd4fe08ec "
 #                                                              "c115c32ac c588d3732 _button-login-id']")
 
