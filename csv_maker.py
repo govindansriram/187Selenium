@@ -16,7 +16,7 @@ def read_csv(csv_path: str):
 
     df["question_number"] = number_list
 
-    df.to_csv("main.csv", index=False)
+    df.to_csv("youCR.csv", index=False)
 
     for idx, i in enumerate(df[df["generate"] == False]["input"].tolist()):
         print(f"Question {idx}: {i}")
