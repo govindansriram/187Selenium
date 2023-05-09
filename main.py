@@ -14,55 +14,54 @@ driver = uc.Chrome()
 
 
 def initialize():
-    driver.get("https://chat.openai.com/")
+    driver.get("https://andisearch.com/")
     driver.maximize_window()
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
 
-    element = driver.find_element(by=By.XPATH, value="//div[text()='Log in']")
-    element.click()
-    driver.implicitly_wait(10)
+    # element = driver.find_element(by=By.XPATH, value="//input[@class= 'rcw-new-message']")
+    # element.click()
+    #element.send_keys("blablah")
+    #driver.implicitly_wait(5)
 
-    email_element = driver.find_element(by=By.XPATH, value="//input[@class='input ca9e64f1c c27c338e9']")
-    email_element.send_keys(os.getenv("EMAIL"))
-    continue_button = driver.find_element(by=By.XPATH, value="//button[@class='c756c7a38 cd4fe08ec "
-                                                             "c115c32ac c588d3732 _button-login-id']")
+    #email_element = driver.find_element(by=By.XPATH, value="//input[@class='input ca9e64f1c c27c338e9']")
+    #email_element.send_keys(os.getenv("EMAIL"))
+    #continue_button = driver.find_element(by=By.XPATH, value="//button[@class='c756c7a38 cd4fe08ec ""c115c32ac c588d3732 _button-login-id']")
 
-    continue_button.click()
-    email_element = driver.find_element(by=By.XPATH, value="//input[@class='input ca9e64f1c c92fe6a3b']")
-    email_element.send_keys(os.getenv("PASSWORD"))
-    driver.implicitly_wait(10)
-    submit = driver.find_element(by=By.XPATH, value="//button[@class='c756c7a38 "
-                                                    "cd4fe08ec c115c32ac c588d3732 _button-login-password']")
+    #continue_button.click()
+    #email_element = driver.find_element(by=By.XPATH, value="//input[@class='input ca9e64f1c c92fe6a3b']")
+    #email_element.send_keys(os.getenv("PASSWORD"))
+    #driver.implicitly_wait(10)
+    #submit = driver.find_element(by=By.XPATH, value="//button[@class='rcw-send']")
 
-    submit.click()
+    #submit.click()
 
-    next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-neutral ml-auto']")
-    next_button.click()
+    #next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-neutral ml-auto']")
+    #next_button.click()
 
-    next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-neutral ml-auto']")
-    next_button.click()
+#     next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-neutral ml-auto']")
+#     next_button.click()
 
-    next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-primary ml-auto']")
-    next_button.click()
+#     next_button = driver.find_element(by=By.XPATH, value="//button[@class='btn relative btn-primary ml-auto']")
+#     next_button.click()
 
-    time.sleep(3)
+    time.sleep(2)
 
 
 def ask_question(question: str):
+    # element = driver.find_element(by=By.XPATH,
+    #                               value="//input[@class= 'rcw-new-message']")
+    
     element = driver.find_element(by=By.XPATH,
-                                  value="//textarea[@class='m-0 w-full resize-none border-0 bg-transparent "
-                                        "p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-"
-                                        "transparent pl-2 md:pl-0']")
-
+                                  value="//input[@class= 'rcw-new-message']")
+    
+    print("question:", question)
     element.send_keys(question)
     element.send_keys(Keys.RETURN)
-    time.sleep(10)
-
-    element = driver.find_element(by=By.XPATH,
-                                  value="//div[@class='group w-full text-gray-800 dark:text-gray-100 border-b "
-                                        "border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]']")
+    time.sleep(8)
+    element = driver.find_element(by=By.XPATH, value="//div[@class= 'rcw-message'][3]")
 
     text = element.text
+    print("text: ", text)
     driver.refresh()
 
     time.sleep(1)
@@ -91,6 +90,7 @@ def run_all_tests(answer_list: list):
     for idx, i in enumerate(df["pass"].tolist()):
 
         if np.isnan(i):
+            print("idx is", idx)
             row = df.iloc[idx]
             inp = row["input"]
             qn = row["question_number"]
@@ -107,38 +107,22 @@ if __name__ == '__main__':
     initialize()
 
     x = [
-        ("first", "president", "general", "america"),
-        ("thomas", "revolution"),
-        ("january", "17", "1706"),
-        ("lexington", "concord"),
-        ("john", "adams", "thomas"),
-        ("British", "stamp", "1765"),
-        ("1776", "1791"),
-        ("Yorktown", "virginia"),
-        ("thomas", "jefferson"),
-        ("no", "limit", "informal"),
-        ("july", "4", "1776"),
-        ("british",),
-        ("pennsylvania",),
-        ("william",),
-        ("20000", "twenty", "thousand"),
-        ("December", "14", "1799"),
-        ("yorktown", "virginia"),
-        ("george",),
-        ("massachusetts",),
-        ("1776",),
-        ("pennsylvania",),
-        ("treasury",),
-        ("17",),
-        ("treasury",),
-        ("1804",),
-        ("new",),
-        ("united",),
-        ("coming",),
-        ("tea",),
-        ("native",),
-        ("pennsylvania",),
-        ("common", "sense"),
+        ("industrial", "revolution", "america"),
+        ("James", "Watt", "Richard", "Thomas"),
+        ("telegraph", "telephone"),
+        ("resources", "fuel", "natural"),
+        ("air", "pollution", "illness"),
+        ("April", "18", "19", "1775"),
+        ("weaving", "mechanized"),
+        ("communicate", "wire"),
+        ("Anthony", "Wallace", "Eli"),
+        ("inventor", "engineer", "cotton","gin"),
+        ("settlement", "farm", "cattle"),
+        ("edison", "London"),
+        ("stressful", "illness"),
+        ("Britain",),
+        ("Britain",),
+        ("George", "Washington", "Anthony", "Wallace", "Eli"),
     ]
 
     run_all_tests(x)

@@ -23,4 +23,4 @@ def read_csv(csv_path: str):
 
 
 if __name__ == '__main__':
-    read_csv("American Revolution Augmented data - Test Cases.csv")
+    read_csv("Deliverable 2A-ChatGPT2-Testcases.csv")
