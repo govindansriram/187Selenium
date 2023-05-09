@@ -64,11 +64,11 @@ def ask_question(question: str):
     element.send_keys(Keys.RETURN)
     time.sleep(10)
 
-    # element = driver.find_element(by=By.XPATH,
-    #                               value="//div[@class='group w-full text-gray-800 dark:text-gray-100 border-b "
-    #                                     "border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]']")
+    element = driver.find_element(By.CSS_SELECTOR, 'div.sc-d8dd9da8-0.cqBTPC')
 
     text = element.text
+    time.sleep(10)
+    print(text)
     driver.refresh()
 
     time.sleep(1)
@@ -111,7 +111,7 @@ def run_all_tests(answer_list: list):
 
 if __name__ == '__main__':
     initialize()
-
+    # ask_question('who is harry styles?')
     x = [
         ("Martin Luther King", "Rosa Parks", "Ruby Bridges"), 
         ("dream", "discrimination", "segregation", "civil rights"),
